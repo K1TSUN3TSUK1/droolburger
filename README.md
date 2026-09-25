@@ -1,5 +1,9 @@
 # Drool Smash Burger
 
+Kanca ve iki burger tek bir şeffaf katmandır. Fare soldan/sağdan girdiğinde aynı tarafa sallanır; üst/alt girişlerinde perspektif eğimi uygulanır. Yay ve sönüm modeli hareketi durdurur. Mobilde dokunma, klavyede odak alma desteklenir. Görünüm dışındayken ve gizli sekmede kare döngüsü durur. Hareket azaltma tercihi sallanmayı kapatır.
+
+Cam dolabı ve kanca görselleri şeffaf PNG olarak yerleştirildi; iki sahne de sayfanın `--blue` rengini kullanır. Camın parlama efekti dikdörtgen yüzey yerine darbe çevresine uygulanır. Düzenlenmiş görseller, yerleşik OpenAI image_gen aracıyla sağlanan fotoğraflardan üretildi. Üretim istemleri `asset-prompts.md` içindedir.
+
 Statik frontend. Giriş dosyası: `dist/index.html`.
 Yerelde çalıştırma: `python -m http.server 4185 --directory dist`.
 
