@@ -46,3 +46,7 @@ footer{display:block;background:#07152e;padding:35px 5.5% 25px;color:#d5e2ff;ove
 .registered{font:500 32px var(--body);letter-spacing:0;position:absolute;top:16%;right:-35px}
 @keyframes led-glitch{0%,12%,18%,43%,100%{opacity:1;text-shadow:0 0 0 transparent}13%{opacity:.18;text-shadow:0 0 18px #91b8ff}14%{opacity:.85}19%{opacity:.3}20%{opacity:1}44%{opacity:.55;text-shadow:0 0 14px #91b8ff}45%{opacity:1}}
 
+/* Restore the original single wordmark treatment. */
+.footer-wordmark{display:block}
+.footer-wordmark>span{font:500 32px var(--body);letter-spacing:0;position:absolute;top:16%;right:-35px}
+
