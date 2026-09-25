@@ -31,8 +31,8 @@ footer{display:block;background:#07152e;padding:35px 5.5% 25px;color:#d5e2ff;ove
 .emergency{padding-left:0;grid-template-columns:1.1fr 1fr;gap:6%}
 .glass-stage{justify-self:start;max-width:none}
 .emergency-copy{padding-right:6%}
-.hero-art .claw-foreground{position:absolute;inset:auto 0 0;width:100%;height:auto;max-height:none;border:0;pointer-events:none;z-index:2;object-fit:contain}
-.claw-stage{aspect-ratio:1/1.23}
+.claw-stage{aspect-ratio:1/.99}
 .hero-art .claw-subject{width:94%;left:3%;top:-100px}
-@media(max-width:1000px){.hero-art .claw-subject{top:-60px;width:100%;left:0}.claw-stage{aspect-ratio:1/1.32}}
-@media(max-width:700px){.emergency{grid-template-columns:1fr;padding:0 0 55px;gap:15px}.glass-stage{margin:0;width:100%}.emergency-copy{padding:0 6%}.hero-art .claw-subject{top:-25px;width:100%;left:0}.claw-stage{aspect-ratio:1/1.38}}
+@media(max-width:1000px){.hero-art .claw-subject{top:-60px;width:100%;left:0}.claw-stage{aspect-ratio:1/1.1}}
+@media(max-width:700px){.emergency{grid-template-columns:1fr;padding:0 0 55px;gap:15px}.glass-stage{margin:0;width:100%}.emergency-copy{padding:0 6%}.hero-art .claw-subject{top:-25px;width:100%;left:0}.claw-stage{aspect-ratio:1/1.1}}
+
