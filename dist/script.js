@@ -53,7 +53,7 @@ if(glass&&window.createGlassPlayer){
 }
 
 const statement=document.querySelector('.statement');
-if(statement){let animation;const strip=statement.firstElementChild;track(statement,()=>{animation=strip.animate([{transform:'translateX(0)'},{transform:'translateX(-180px)'}],{duration:4500,easing:'cubic-bezier(.2,.65,.3,1)',fill:'both'});animation.finished.then(()=>{statement.dataset.motion='complete'}).catch(()=>{})},()=>animation?.cancel())}
+if(statement){let animation;const strip=statement.firstElementChild;track(statement,()=>{animation=strip.animate([{transform:'translateX(0)'},{transform:'translateX(-50%)'}],{duration:11500,easing:'linear',iterations:Infinity})},()=>{animation?.cancel();strip.style.transform='translateX(0)'})}
 
 function resetMotion(){
   observer.disconnect();
