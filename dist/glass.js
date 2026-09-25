@@ -16,14 +16,8 @@ const scene=document.createElement('canvas');scene.width=W;scene.height=H;const 
 const cracks=Array.from({length:15},(_,i)=>{const a=i/15*Math.PI*2;return Array.from({length:6},(_,j)=>[365+Math.cos(a+(random()-.5)*.25)*j*90,650+Math.sin(a+(random()-.5)*.25)*j*100])});
 function poly(points){ctx.beginPath();points.forEach(([x,y],i)=>i?ctx.lineTo(x,y):ctx.moveTo(x,y));ctx.closePath()}
 function pane(){poly([[237,397],[775,344],[775,1045],[240,991]])}
-function axe(t){let angle=0,x=0,y=0;if(t<impact){const p=Math.max(0,Math.min(1,(t-.25)/.9));const e=p*p*p;angle=.12*(1-e);x=0;y=-50*(1-e)}else{const p=Math.min(1,(t-impact)/1.2);angle=.20*p;x=-470*p*p;y=140*p}
-ctx.save();ctx.translate(x,y);ctx.translate(-20,980);ctx.rotate(angle);ctx.translate(20,-980);
-// Longer lacquered shaft, drawn behind the original steel axe head.
-ctx.save();ctx.translate(116,626);ctx.rotate(.14);
-const shaft=ctx.createLinearGradient(-31,0,31,0);shaft.addColorStop(0,'#155a85');shaft.addColorStop(.22,'#57acd1');shaft.addColorStop(.43,'#b4e9f7');shaft.addColorStop(.61,'#68b8dc');shaft.addColorStop(1,'#20668d');
-ctx.fillStyle=shaft;ctx.beginPath();ctx.roundRect(-31,0,62,555,24);ctx.fill();
-ctx.fillStyle='rgba(235,251,255,.32)';ctx.beginPath();ctx.roundRect(-17,30,7,482,4);ctx.fill();ctx.restore();
-poly([[0,416],[55,430],[108,458],[163,498],[226,547],[278,601],[327,632],[377,652],[373,706],[351,747],[316,785],[276,838],[251,839],[218,781],[183,727],[145,678],[70,611],[29,595],[45,565],[74,540],[0,480]]);ctx.clip();ctx.drawImage(original,0,0,W,H);ctx.restore()}
+function axe(t){let angle=0,x=0,y=0;if(t<impact){const p=Math.max(0,Math.min(1,(t-.25)/.9));const e=p*p*p;angle=-.36*(1-e);x=-125*(1-e);y=-85*(1-e)}else{const p=Math.min(1,(t-impact)/1.2);angle=.20*p;x=-470*p*p;y=140*p}
+ctx.save();ctx.translate(x,y);ctx.translate(-20,980);ctx.rotate(angle);ctx.translate(20,-980);poly([[0,416],[55,430],[108,458],[163,498],[226,547],[278,601],[327,632],[377,652],[373,706],[351,747],[316,785],[276,838],[251,839],[218,781],[183,727],[145,678],[0,907],[0,744],[70,611],[29,595],[45,565],[74,540],[0,480]]);ctx.clip();ctx.drawImage(original,0,0,W,H);ctx.restore()}
 function glass(s,t){
  const u=Math.max(0,t-impact-.08);if(!u)return;
  const burst=1-Math.exp(-u*4.1),drift=Math.max(0,u-.65);

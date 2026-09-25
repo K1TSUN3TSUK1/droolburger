@@ -27,12 +27,12 @@ footer{display:block;background:#07152e;padding:35px 5.5% 25px;color:#d5e2ff;ove
 @media(max-width:700px){.hero-art{transform:none;width:100%;max-width:440px;align-self:center}.claw-stage{aspect-ratio:1/.96;overflow:visible}.hero-art .claw-subject{top:-25px;width:110%;left:-5%}.hero-art figcaption{margin-top:5px}.glass-stage{margin:0 -6.82%}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}}
 
-/* Longer suspension, with the burgers sitting lower in the hero. */
-.hero-art .claw-subject{top:-30px;aspect-ratio:4/5;transform-origin:56% -120px}
-.hero-art .claw-subject img{position:relative;width:100%;height:auto;max-height:none;border:0;object-fit:contain}
-.claw-extension{position:absolute;left:calc(56% - 11px);top:-180px;width:22px;height:210px;background:linear-gradient(90deg,#141d28 0%,#9ba9b4 14%,#edf4fa 27%,#788591 39%,#252f38 58%,#d5e2ea 82%,#3c4954 100%);border-inline:1px solid #b3c7d3;border-radius:3px;box-shadow:4px 0 8px #00133140}
-@media(min-width:1600px){.hero-art .claw-subject{top:-45px}}
-@media(max-width:1000px){.hero-art .claw-subject{top:-5px}.claw-stage{aspect-ratio:1/1.24}}
-@media(max-width:700px){.hero-art .claw-subject{top:15px}.claw-stage{aspect-ratio:1/1.16}.claw-extension{top:-70px;height:100px;width:16px;left:calc(56% - 8px)}.hero-art .claw-subject{transform-origin:56% -60px}}
-
-@media(min-width:1001px){.hero-art .claw-subject{top:10px;width:100%;left:0}}
+/* The axe enters from the actual left page edge. */
+.emergency{padding-left:0;grid-template-columns:1.1fr 1fr;gap:6%}
+.glass-stage{justify-self:start;max-width:none}
+.emergency-copy{padding-right:6%}
+.hero-art .claw-foreground{position:absolute;inset:auto 0 0;width:100%;height:auto;max-height:none;border:0;pointer-events:none;z-index:2;object-fit:contain}
+.claw-stage{aspect-ratio:1/1.23}
+.hero-art .claw-subject{width:94%;left:3%;top:-100px}
+@media(max-width:1000px){.hero-art .claw-subject{top:-60px;width:100%;left:0}.claw-stage{aspect-ratio:1/1.32}}
+@media(max-width:700px){.emergency{grid-template-columns:1fr;padding:0 0 55px;gap:15px}.glass-stage{margin:0;width:100%}.emergency-copy{padding:0 6%}.hero-art .claw-subject{top:-25px;width:100%;left:0}.claw-stage{aspect-ratio:1/1.38}}
