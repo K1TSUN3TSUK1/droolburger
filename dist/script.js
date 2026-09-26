@@ -53,6 +53,32 @@ if(glass&&window.createGlassPlayer){
 }
 
 const statement=document.querySelector('.statement');
+// A curved opening mask unfolds into the full photograph or film.
+function openingShape(bend){
+ const points=[];
+ for(let edge=0;edge<4;edge++)for(let j=0;j<16;j++){
+  const t=j/16,wave=Math.sin(t*Math.PI);
+  let x,y;
+  if(edge===0){x=t*100+bend*(6-11*t);y=bend*(18-15*t+wave*10)}
+  if(edge===1){x=100+bend*(-5-6*t-wave*10);y=t*100+bend*(3-12*t)}
+  if(edge===2){x=(1-t)*100+bend*(-11+14*t);y=100+bend*(-9-9*t-wave*10)}
+  if(edge===3){x=bend*(3+3*t+wave*14);y=(1-t)*100+bend*(-18+36*t)}
+  points.push(`${x}% ${y}%`);
+ }
+ return `polygon(${points.join(',')})`;
+}
+document.querySelectorAll('.product-photo img,.process-photo img,.film video,.sides-photo img,.side-detail img,.place-grid img').forEach(media=>{
+ // Video already has a playback observer; animate its containing figure instead.
+ const target=media.tagName==='VIDEO'?media.closest('.film'):media;
+ let opening;
+ track(target,()=>{
+  opening=media.animate([
+   {clipPath:openingShape(1),transform:'perspective(1000px) rotateY(-13deg) rotateZ(-5deg) scale(.78)',filter:'saturate(.45) brightness(.65)',offset:0},
+   {clipPath:openingShape(.45),transform:'perspective(1000px) rotateY(5deg) rotateZ(2deg) scale(.94)',filter:'saturate(.8) brightness(.9)',offset:.55},
+   {clipPath:openingShape(0),transform:'perspective(1000px) rotateY(0deg) rotateZ(0deg) scale(1)',filter:'saturate(1) brightness(1)',offset:1}
+  ],{duration:1600,easing:'cubic-bezier(.2,.65,.25,1)',fill:'both'});
+ },()=>opening?.cancel());
+});
 if(statement){let animation;const strip=statement.firstElementChild;track(statement,()=>{animation=strip.animate([{transform:'translateX(0)'},{transform:'translateX(-50%)'}],{duration:11500,easing:'linear',iterations:Infinity})},()=>{animation?.cancel();strip.style.transform='translateX(0)'})}
 
 function resetMotion(){

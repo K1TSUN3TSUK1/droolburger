@@ -3,7 +3,17 @@ window.createGlassPlayer=function(canvas){
 const ctx=canvas.getContext('2d');
 const original=new Image(),plate=new Image();original.src='assets/glass-original.jpg';plate.src='assets/cabinet-cutout.png';
 
-const W=1080,H=1350,impact=1.15,cycle=12;
+const W=1080,H=1350,impact=1.15;
+let step=1/60;
+const pointer={x:-1000,y:-1000,dx:0,dy:0,inside:false};
+canvas.addEventListener('pointermove',event=>{
+ const rect=canvas.getBoundingClientRect(),x=(event.clientX-rect.left)*W/rect.width,y=(event.clientY-rect.top)*H/rect.height;
+ pointer.dx=pointer.inside?Math.max(-65,Math.min(65,x-pointer.x)):0;
+ pointer.dy=pointer.inside?Math.max(-65,Math.min(65,y-pointer.y)):0;
+ pointer.x=x;pointer.y=y;pointer.inside=true;
+});
+canvas.addEventListener('pointerleave',()=>{pointer.inside=false;pointer.dx=pointer.dy=0});
+function resetShards(){pointer.inside=false;pointer.dx=pointer.dy=0;shards.forEach(s=>{s.ox=s.oy=s.vx=s.vy=0})}
 let seed=827;function random(){seed=(seed*1664525+1013904223)>>>0;return seed/4294967296}
 const shards=Array.from({length:78},(_,i)=>{
  const a=random()*Math.PI*2,s=i<11?48+random()*63:i<34?19+random()*32:3+random()*15;
@@ -21,8 +31,16 @@ ctx.save();ctx.translate(x,y);ctx.translate(-20,980);ctx.rotate(angle);ctx.trans
 function glass(s,t){
  const u=Math.max(0,t-impact-.08);if(!u)return;
  const burst=1-Math.exp(-u*4.1),drift=Math.max(0,u-.65);
- const x=s.x+s.dx*burst+Math.sin(drift*.24+s.phase)*drift*1.5;
- const y=s.y+s.dy*burst+drift*3.5+drift*drift*.4;
+ const settle=1-Math.exp(-drift*.7);
+ const bx=s.x+s.dx*burst+Math.sin(drift*.32+s.phase)*22*settle;
+ const by=s.y+s.dy*burst+Math.sin(drift*.26+s.phase)*27*settle;
+ s.ox??=0;s.oy??=0;s.vx??=0;s.vy??=0;
+ let fx=0,fy=0;
+ if(pointer.inside){const dx=bx+s.ox-pointer.x,dy=by+s.oy-pointer.y,d=Math.hypot(dx,dy),influence=Math.max(0,1-d/220);
+ fx=influence*(dx/Math.max(d,1)*170+pointer.dx*14);fy=influence*(dy/Math.max(d,1)*170+pointer.dy*14)}
+ s.vx+=(fx-s.ox*3.2-s.vx*2.5)*step;s.vy+=(fy-s.oy*3.2-s.vy*2.5)*step;
+ s.ox+=s.vx*step;s.oy+=s.vy*step;
+ const x=bx+s.ox,y=by+s.oy;
  const rx=s.tilt+u*s.tumble,ry=s.phase+u*s.spin,rz=s.r+u*s.spin*.46;
  const cos=Math.cos,sin=Math.sin,depth=.68+s.z*.7;
  function project(p,z=0){let [a,b]=p;let c=b*sin(rx)+z*cos(rx);b=b*cos(rx)-z*sin(rx);let d=a*cos(ry)+c*sin(ry);c=-a*sin(ry)+c*cos(ry);a=d;const perspective=650/(650-c);return [x+(a*cos(rz)-b*sin(rz))*depth*perspective,y+(a*sin(rz)+b*cos(rz))*depth*perspective]}
@@ -48,22 +66,20 @@ function render(t){ctx.clearRect(0,0,W,H);ctx.fillStyle=getComputedStyle(canvas.
 // A subtle intact glass surface disappears after impact.
 ctx.save();pane();ctx.clip();ctx.fillStyle=`rgba(178,229,255,${t<impact?.075:Math.max(0,.075-(t-impact)*.25)})`;ctx.fillRect(230,340,550,710);
 if(hit>=0&&hit<1.1){ctx.globalAlpha=Math.min(1,hit*20)*Math.max(0,1-(hit-.18)/.8);ctx.strokeStyle='#c8f3ff';ctx.lineWidth=1.8;cracks.forEach(line=>{ctx.beginPath();line.slice(0,Math.max(2,Math.ceil(hit*55))).forEach(([x,y],i)=>i?ctx.lineTo(x,y):ctx.moveTo(x,y));ctx.stroke()})}ctx.restore();axe(t);sceneCtx.clearRect(0,0,W,H);sceneCtx.drawImage(canvas,0,0);shards.forEach(s=>glass(s,t));if(hit>=0&&hit<.13){const flash=ctx.createRadialGradient(365,650,0,365,650,240);flash.addColorStop(0,`rgba(222,249,255,${.38*(1-hit/.13)})`);flash.addColorStop(1,'rgba(222,249,255,0)');ctx.fillStyle=flash;ctx.fillRect(125,410,480,480)}ctx.restore();
-// Fade back to the start only at the end of each cycle.
-if(t>11.3){ctx.globalAlpha=(t-11.3)/.7;ctx.drawImage(plate,0,0,W,H);axe(0);ctx.globalAlpha=1}}
+}
 
 let frameId=0,elapsed=0,last=0,active=false,loaded=false;
 const ready=Promise.all([original.decode(),plate.decode()]).then(()=>{loaded=true;render(0)}).catch(()=>{canvas.style.visibility='hidden'});
 function frame(now){
  if(!active||!loaded)return;
- if(last)elapsed+=Math.min((now-last)/1000,.06);
- last=now;render(Math.min(elapsed,10.8));
- if(elapsed<10.8)frameId=requestAnimationFrame(frame);
- else{active=false;frameId=0;canvas.dataset.motion='complete'}
+ step=last?Math.min((now-last)/1000,.035):1/60;elapsed+=step;
+ last=now;render(elapsed);pointer.dx*=.8;pointer.dy*=.8;
+ frameId=requestAnimationFrame(frame);
 }
 return {
  ready,
- start(){active=true;elapsed=0;last=0;cancelAnimationFrame(frameId);ready.then(()=>{if(active&&loaded){render(0);frameId=requestAnimationFrame(frame)}})},
- stop(){active=false;cancelAnimationFrame(frameId);frameId=0;elapsed=0;last=0;if(loaded)render(0)},
+ start(){active=true;elapsed=0;last=0;resetShards();cancelAnimationFrame(frameId);ready.then(()=>{if(active&&loaded){render(0);frameId=requestAnimationFrame(frame)}})},
+ stop(){active=false;cancelAnimationFrame(frameId);frameId=0;elapsed=0;last=0;resetShards();if(loaded)render(0)},
  still(){active=false;cancelAnimationFrame(frameId);if(loaded)render(4)},
  get time(){return elapsed}
 };
