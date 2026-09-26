@@ -67,7 +67,7 @@ function openingShape(bend){
  }
  return `polygon(${points.join(',')})`;
 }
-document.querySelectorAll('.product-photo img,.process-photo img,.film video,.sides-photo img,.side-detail img,.place-grid img').forEach(media=>{
+document.querySelectorAll('.film video').forEach(media=>{
  // Video already has a playback observer; animate its containing figure instead.
  const target=media.tagName==='VIDEO'?media.closest('.film'):media;
  let opening;
