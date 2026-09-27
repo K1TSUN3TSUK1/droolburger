@@ -18,7 +18,7 @@
   const dialog = document.createElement('dialog');
   dialog.className = 'allergen-dialog';
   dialog.setAttribute('aria-labelledby', 'allergen-title');
-  dialog.innerHTML = '<div class="allergen-top"><span>DROOL / İÇİNDE NE VAR?</span><button class="allergen-close" aria-label="Alerjen penceresini kapat">✕</button></div><div class="allergen-body"><p class="allergen-kicker">ÜRÜNÜ TANI.</p><h2 id="allergen-title"></h2><p class="allergen-label">TABLOYA GÖRE İÇERDİĞİ ALERJENLER</p><ul class="allergen-list"></ul><p class="allergen-extra"></p><div class="allergen-note"><b>SİPARİŞTEN ÖNCE</b><p>Alerjen içerikleri üretim süreçleri gereği değişiklik gösterebilir. Ürünlerde çapraz bulaşma riski olabilir. Alerjiniz varsa sipariş vermeden önce ekibimizden bilgi alınız.</p></div><a class="allergen-source" href="assets/allergen-table.png" target="_blank" rel="noopener">Tüm alerjen tablosu ↗</a></div>';
+  dialog.innerHTML = '<div class="allergen-top"><span>DROOL / İÇİNDE NE VAR?</span><button class="allergen-close" aria-label="Alerjen penceresini kapat">✕</button></div><div class="allergen-body"><p class="allergen-kicker">ÜRÜNÜ TANI.</p><h2 id="allergen-title"></h2><p class="allergen-label">TABLOYA GÖRE İÇERDİĞİ ALERJENLER</p><ul class="allergen-list"></ul><p class="allergen-extra"></p><div class="allergen-note"><b>SİPARİŞTEN ÖNCE</b><p>Alerjen içerikleri üretim süreçleri gereği değişiklik gösterebilir. Ürünlerde çapraz bulaşma riski olabilir. Alerjiniz varsa sipariş vermeden önce ekibimizden bilgi alınız.</p></div><a class="allergen-source" href="assets/allergen-table.png" target="_blank" rel="noopener">Tüm alerjen tablosu </a></div>';
   document.body.append(dialog);
   let opener;
   function open(name, trigger) {
