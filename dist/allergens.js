@@ -56,4 +56,20 @@
     container.append(button);
   }
   document.querySelectorAll('[data-type]').forEach((section,index) => attach(section.querySelector('.burger-art'), section.dataset.type==='TRUFFLE'?'Truffle Smash':'Drool Smash', index));
+  function attachProduct(container, name, picture) {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'allergen-image-button';
+    button.setAttribute('aria-label', name + ' alerjen bilgilerini göster');
+    button.setAttribute('aria-haspopup', 'dialog');
+    picture.before(button);
+    button.append(picture);
+    button.addEventListener('click', () => open(name, button));
+  }
+  document.querySelectorAll('.sides-menu article,.sauce-grid article').forEach(article => {
+    const picture = article.querySelector('img');
+    attachProduct(article, picture.alt, picture);
+  });
+  attachProduct(document.querySelector('.fries-note'), 'Patates kızartması', document.querySelector('.fries-note .menu-crop'));
+  attachProduct(document.querySelector('.cookie'), 'House Cookie', document.querySelector('.cookie .menu-crop'));
 })();
