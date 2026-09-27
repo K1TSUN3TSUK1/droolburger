@@ -17,3 +17,8 @@
   .hero-bottom{grid-area:bottom;position:relative;inset:auto;height:auto;min-height:52px;gap:20px;font-size:8px;letter-spacing:1px}
   .hero-bottom a{font-size:8px!important}
 }
+
+@keyframes mobile-claw-sway{0%,100%{rotate:-1.5deg}50%{rotate:1.5deg}}
+@media(max-width:700px) and (prefers-reduced-motion:no-preference){
+  .hero-art .claw-subject{animation:mobile-claw-sway 12s ease-in-out infinite}
+}
