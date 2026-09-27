@@ -1,13 +1,19 @@
 @media(max-width:700px){
-  .hero{isolation:isolate;padding-top:130px;gap:28px}
-  .hero-copy{position:relative;z-index:2;pointer-events:none}
-  .hero-copy a{pointer-events:auto}
-  .hero h1{font-size:clamp(52px,12.4vw,84px);margin-top:46px;margin-bottom:32px;position:relative}
-  .hero h1 .outline{color:transparent;-webkit-text-stroke:1.5px white;text-shadow:none}
-  .hero-art{position:absolute;z-index:1;top:135px;right:-32px;width:70%;max-width:320px;margin:0;align-self:auto}
-  .hero-art .claw-stage{aspect-ratio:1/1.1}
-  .hero-art .claw-subject{top:-58px;left:0;width:100%}
+  .site-header{height:76px;padding:18px 6%}
+  .brand>span{font-size:39px}
+  .site-header nav{top:75px}
+  .hero{isolation:isolate;display:grid;grid-template-columns:1fr;grid-template-areas:"location" "title" "art" "description" "cta" "bottom";gap:0;min-height:0;padding:102px 6% 0}
+  .hero-copy{display:contents;pointer-events:auto}
+  .hero-copy>.eyebrow{grid-area:location;margin:0 0 18px;font-size:10px;letter-spacing:2px}
+  .hero h1{grid-area:title;position:relative;z-index:2;font-size:clamp(58px,17.8vw,108px);line-height:.88;letter-spacing:-1.5px;margin:0}
+  .hero h1 .outline{color:transparent;-webkit-text-stroke:1.3px white;text-shadow:none}
+  .hero-art{grid-area:art;position:relative;z-index:1;top:auto;right:auto;justify-self:end;align-self:start;width:78%;max-width:360px;height:clamp(245px,68vw,340px);margin:0;transform:none}
+  .hero-art .claw-stage{height:100%;aspect-ratio:auto;overflow:visible}
+  .hero-art .claw-subject{top:-30px;left:0;width:100%}
   .hero-art figcaption{display:none}
-  .hero-description{position:relative;margin-top:260px}
-  .hero-brand-stamp{position:absolute;left:auto;right:2%;top:365px;transform:none;z-index:2;width:160px;margin:0}
+  .hero-brand-stamp{grid-area:art;position:relative;left:auto;right:auto;top:auto;transform:none;z-index:2;align-self:end;justify-self:start;width:clamp(100px,29vw,145px);margin:0 0 14px -5px}
+  .hero-description{grid-area:description;position:relative;margin:14px 0 0;font-size:14px;line-height:1.65}
+  .hero .button{grid-area:cta;justify-content:center;width:100%;margin:20px 0 24px;padding:17px 22px;font-size:12px;letter-spacing:1px}
+  .hero-bottom{grid-area:bottom;position:relative;inset:auto;height:auto;min-height:52px;gap:20px;font-size:8px;letter-spacing:1px}
+  .hero-bottom a{font-size:8px!important}
 }
