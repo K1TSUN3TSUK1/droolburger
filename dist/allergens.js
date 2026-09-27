@@ -49,7 +49,7 @@
     const button = document.createElement('button');
     button.type = 'button';
     button.className = 'allergen-stamp';
-    button.innerHTML = '<svg viewBox="0 0 140 140" aria-hidden="true"><defs><path id="allergen-ring-'+id+'" d="M70,70 m-54,0 a54,54 0 1,1 108,0 a54,54 0 1,1 -108,0"/></defs><text class="stamp-ring"><textPath href="#allergen-ring-'+id+'" textLength="335" lengthAdjust="spacing">ALERJENLER İÇİN TIKLA • DROOL SMASH • </textPath></text><text class="stamp-logo" x="70" y="84" text-anchor="middle" transform="rotate(-18 70 70)">DROOL</text><path d="M59 98h22m-5-5 5 5-5 5" fill="none" stroke="currentColor" stroke-width="2"/></svg>';
+    button.innerHTML = '<svg viewBox="0 0 140 140" aria-hidden="true"><defs><path id="allergen-ring-'+id+'" d="M70,70 m-54,0 a54,54 0 1,1 108,0 a54,54 0 1,1 -108,0"/></defs><text class="stamp-ring"><textPath href="#allergen-ring-'+id+'" textLength="335" lengthAdjust="spacing">ALERJENLER İÇİN TIKLA • DROOL SMASH • </textPath></text><text class="stamp-logo" x="70" y="84" text-anchor="middle" transform="rotate(-18 70 70)">DROOL</text></svg>';
     button.setAttribute('aria-label', name + ' alerjen bilgilerini göster');
     button.setAttribute('aria-haspopup', 'dialog');
     button.addEventListener('click', () => open(name, button));
