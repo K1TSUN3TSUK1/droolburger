@@ -1,0 +1,13 @@
+@media(max-width:700px){
+  .hero{isolation:isolate;padding-top:130px;gap:28px}
+  .hero-copy{position:relative;z-index:2;pointer-events:none}
+  .hero-copy a{pointer-events:auto}
+  .hero h1{font-size:clamp(52px,12.4vw,84px);margin-top:46px;margin-bottom:32px;position:relative}
+  .hero h1 .outline{color:transparent;-webkit-text-stroke:1.5px white;text-shadow:none}
+  .hero-art{position:absolute;z-index:1;top:135px;right:-36px;width:62%;max-width:285px;margin:0;align-self:auto}
+  .hero-art .claw-stage{aspect-ratio:1/1.1}
+  .hero-art .claw-subject{top:-58px;left:0;width:100%}
+  .hero-art figcaption{display:none}
+  .hero-description{position:relative;margin-top:82px}
+  .hero-brand-stamp{z-index:2;width:190px}
+}

@@ -7,7 +7,8 @@ function renderBurger(section, index) {
     image.className = 'single-burger';
     const isTruffle = section.dataset.type === 'TRUFFLE';
     image.alt = (isTruffle ? 'Truffle' : 'Drool') + ' Smash ' + sizes[index];
-    image.src = 'assets/' + (isTruffle ? 'truffle' : 'drool') + '-hq-' + sizes[index].toLowerCase() + '.png';
+    const photoSize = isTruffle ? ['S', 'L', 'M', 'XXL', 'XL'][index] : sizes[index];
+    image.src = 'assets/' + (isTruffle ? 'truffle' : 'drool') + '-hq-' + photoSize.toLowerCase() + '.png';
     art.replaceChildren(image);
     return;
   }
