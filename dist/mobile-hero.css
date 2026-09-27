@@ -2,7 +2,7 @@
   .site-header{height:76px;padding:18px 6%}
   .brand>span{font-size:39px}
   .site-header nav{top:75px}
-  .hero{isolation:isolate;display:grid;grid-template-columns:1fr;grid-template-areas:"location" "title" "art" "description" "cta" "bottom";grid-template-rows:auto auto clamp(245px,68vw,340px) auto auto auto;gap:0;min-height:0;padding:102px 6% 0}
+  .hero{isolation:isolate;display:grid;grid-template-columns:1fr;grid-template-areas:"location" "art" "title" "description" "cta" "bottom";grid-template-rows:auto clamp(200px,55vw,300px) auto auto auto auto;gap:0;min-height:0;padding:102px 6% 0}
   .hero-copy{display:contents;pointer-events:auto}
   .hero-copy>.eyebrow{grid-area:location;margin:0 0 18px;font-size:10px;letter-spacing:2px}
   .hero h1{grid-area:title;position:relative;z-index:2;font-size:clamp(58px,17.8vw,108px);line-height:.88;letter-spacing:-1.5px;margin:0}
