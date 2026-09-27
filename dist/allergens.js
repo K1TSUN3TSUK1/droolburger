@@ -45,27 +45,15 @@
   dialog.querySelector('.allergen-close').addEventListener('click', () => dialog.close());
   dialog.addEventListener('click', event => { if (event.target === dialog) { const r=dialog.getBoundingClientRect(); if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom) dialog.close(); } });
   dialog.addEventListener('close', () => { document.body.classList.remove('allergen-open'); opener?.focus(); });
-  function attach(container, name, picture) {
+  function attach(container, name, id) {
     const button = document.createElement('button');
     button.type = 'button';
-    button.className = 'allergen-trigger';
-    button.textContent = 'İÇİNDE NE VAR? ↗';
+    button.className = 'allergen-stamp';
+    button.innerHTML = '<svg viewBox="0 0 140 140" aria-hidden="true"><defs><path id="allergen-ring-'+id+'" d="M70,70 m-54,0 a54,54 0 1,1 108,0 a54,54 0 1,1 -108,0"/></defs><text class="stamp-ring"><textPath href="#allergen-ring-'+id+'" textLength="335" lengthAdjust="spacing">ALERJENLER İÇİN TIKLA • DROOL SMASH • </textPath></text><text class="stamp-logo" x="70" y="84" text-anchor="middle" transform="rotate(-18 70 70)">DROOL</text><path d="M59 98h22m-5-5 5 5-5 5" fill="none" stroke="currentColor" stroke-width="2"/></svg>';
     button.setAttribute('aria-label', name + ' alerjen bilgilerini göster');
     button.setAttribute('aria-haspopup', 'dialog');
     button.addEventListener('click', () => open(name, button));
     container.append(button);
-    if (picture) {
-      const imageButton=document.createElement('button');
-      imageButton.type='button';
-      imageButton.className='allergen-image-button';
-      imageButton.setAttribute('aria-label',name+' alerjen bilgilerini göster');
-      imageButton.setAttribute('aria-haspopup','dialog');
-      picture.before(imageButton);imageButton.append(picture);
-      imageButton.addEventListener('click',()=>open(name,imageButton));
-    }
   }
-  document.querySelectorAll('[data-type]').forEach(section => attach(section.querySelector('.burger-info'), section.dataset.type==='TRUFFLE'?'Truffle Smash':'Drool Smash', section.querySelector('.hero-product')));
-  document.querySelectorAll('.sides-menu article,.sauce-grid article').forEach(article=>attach(article,article.querySelector('img').alt,article.querySelector('img')));
-  attach(document.querySelector('.fries-note'),'Patates kızartması',document.querySelector('.fries-note .menu-crop'));
-  attach(document.querySelector('.cookie'),'House Cookie',document.querySelector('.cookie .menu-crop'));
+  document.querySelectorAll('[data-type]').forEach((section,index) => attach(section.querySelector('.burger-art'), section.dataset.type==='TRUFFLE'?'Truffle Smash':'Drool Smash', index));
 })();
