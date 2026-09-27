@@ -2,14 +2,14 @@
   .site-header{height:76px;padding:18px 6%}
   .brand>span{font-size:39px}
   .site-header nav{top:75px}
-  .hero{isolation:isolate;display:grid;grid-template-columns:1fr;grid-template-areas:"location" "title" "art" "description" "cta" "bottom";gap:0;min-height:0;padding:102px 6% 0}
+  .hero{isolation:isolate;display:grid;grid-template-columns:1fr;grid-template-areas:"location" "title" "art" "description" "cta" "bottom";grid-template-rows:auto auto clamp(245px,68vw,340px) auto auto auto;gap:0;min-height:0;padding:102px 6% 0}
   .hero-copy{display:contents;pointer-events:auto}
   .hero-copy>.eyebrow{grid-area:location;margin:0 0 18px;font-size:10px;letter-spacing:2px}
   .hero h1{grid-area:title;position:relative;z-index:2;font-size:clamp(58px,17.8vw,108px);line-height:.88;letter-spacing:-1.5px;margin:0}
   .hero h1 .outline{color:transparent;-webkit-text-stroke:1.3px white;text-shadow:none}
-  .hero-art{grid-area:art;position:relative;z-index:1;top:auto;right:auto;justify-self:end;align-self:start;width:78%;max-width:360px;height:clamp(245px,68vw,340px);margin:0;transform:none}
+  .hero-art{grid-area:auto;position:absolute;z-index:1;top:65px;right:6%;width:68.64%;max-width:360px;height:clamp(245px,68vw,340px);margin:0;transform:none}
   .hero-art .claw-stage{height:100%;aspect-ratio:auto;overflow:visible}
-  .hero-art .claw-subject{top:-30px;left:0;width:100%}
+  .hero-art .claw-subject{top:0;left:0;width:100%}
   .hero-art figcaption{display:none}
   .hero-brand-stamp{grid-area:art;position:relative;left:auto;right:auto;top:auto;transform:none;z-index:2;align-self:end;justify-self:start;width:clamp(100px,29vw,145px);margin:0 0 14px -5px}
   .hero-description{grid-area:description;position:relative;margin:14px 0 0;font-size:14px;line-height:1.65}
